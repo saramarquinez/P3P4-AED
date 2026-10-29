@@ -364,7 +364,7 @@ Crea un data frame denominado `flights.f` que contenga los vuelos que involucren
 
 ```{r }
 
-flights.f<-flights%>%inner_join(planes.f,by="tailnum")
+flights.f<-flights%>%semi_join(planes.f,by="tailnum")
 
 head(flights.f)
 
@@ -388,6 +388,8 @@ Existen variables que, a priori, no tienen demasiado interés para el estudio qu
 - En el data frame `planes` quédate con todas las variables excepto `speed` y `type`.
 
 ```{r }
+flights<-flights%>%select(-time_hour,-ends_with("time"))
+planes<-planes%>%select(-speed,-type)
 
 ```
 
@@ -396,7 +398,9 @@ Existen variables que, a priori, no tienen demasiado interés para el estudio qu
 Incorpora una nueva variable a `flights` denominado `Full_Date` que sea de tipo `character` que incorpore una cadena de texto de la forma `d-m-Y`. Donde `d` indica día, `m` mes e `Y` año, a partir de la información incluida en el data frame. Utiliza una función de **DPLYR** que permita conseguir este propósito. Elimina las variables originales involucradas en la creación de la nueva variable.
 
 ```{r }
+flights<-flights%>%mutate(Full_Date=paste(day,month,year,sep="-"))%>%select(-day,-month,-year)
 
+head(flights)
 
 ```
 
