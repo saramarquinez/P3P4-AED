@@ -2,15 +2,15 @@
 title: "Práctica 3 y 4. Preparación y manejo de Datos"
 subtitle: "Análisis Exploratorio de Datos, Máster en Ciencia de Datos - UV"
 output:
+  pdf_document:
+    toc: yes
+    toc_depth: 3
+    number_sections: no
   html_document:
     echo: yes
     number_sections: no
     theme: lumen
     toc: yes
-  pdf_document:
-    toc: yes
-    toc_depth: 3
-    number_sections: no
 ---
 
 ```{r setup, cache=F, echo=F, message=F, warning=F, tidy=F}
@@ -209,8 +209,8 @@ pacman::p_load(char=packages)
 
 load("data/pew_religion.Rdata")
 
-pew_religion%>%gather(key="income",value="cantidad",-religion)%>%mutate(income=factor(income))
-
+pew_religion_tidy<-pew_religion%>%gather(key="income",value="cantidad",-religion)%>%mutate(income=factor(income))
+head(pew_religion_tidy)
 
 ```
 
@@ -218,6 +218,7 @@ Otro ejemplo usando el conjunto de datos `Billboard` que muestra cuando una canc
 
 ```{r load billboard}
 load('data/billboard.Rdata')
+
 head(raw[, 1:12])
 ```
 
@@ -232,7 +233,8 @@ Obtén la versión *tidy* de este conjunto de datos usando `pivot_longer`.
 Consejo: puedes eliminar el prefijo `wk` de las semanas mediante el argumento `names_prefix`. Opcionalmente puedes crear una columna `date` a partir de `date.entered`, sumando las semanas transcurridas desde la fecha de entrada en lista.
 
 ```{r}
-
+ejer2<-raw%>%pivot_longer(cols=wk1:wk76,names_to="week",values_to="rank")
+head(ejer2)
 
 ```
 
