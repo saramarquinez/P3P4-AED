@@ -203,6 +203,13 @@ Para convertir este conjunto a formato *tidy* tendremos que agrupar todas las co
 Convierte el dataset `pew_religion` a formato *tidy* usando `gather`. La columna `income` debe contener una variable de tipo `factor`.
 
 ```{r}
+library(pacman)
+packages=c("tidyverse", "knitr", "ggplot2", "datasets", "RColorBrewer",'dplyr','lubridate',"nycflights13")
+pacman::p_load(char=packages)
+
+load("data/pew_religion.Rdata")
+
+pew_religion%>%gather(key="income",value="cantidad",-religion)%>%mutate(income=factor(income))
 
 
 ```
