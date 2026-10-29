@@ -281,6 +281,8 @@ Para obtener la versión *tidy* primero juntamos todos los días en una variable
 Obtén la versión *tidy* del conjunto de datos `weather` utilizando las funciones `pivot_longer` y `pivot_wider`. Además cambiaremos las columnas `year`, `month` y `dia` por una única variable `fecha`. Para que la operación `pivot_wider` no de error tendremos que eliminar los NA's cuando usemos `pivot_longer`.
 
 ```{r}
+ejer4<-raw%>%pivot_longer(cols=d1:d31,names_to="dias",values_to="tiempo")%>%drop_na(tiempo)%>%pivot_wider(names_from="element",values_from="tiempo")
+head(ejer4)
 
 
 ```
