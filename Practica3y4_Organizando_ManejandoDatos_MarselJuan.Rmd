@@ -320,7 +320,6 @@ Vamos a cargar el conjunto de datos `VuelosNY.Rdata` que contiene dos data frame
 
 library(dplyr)
 #library(dbplyr)
-rm(list=ls())
 load("./data/VuelosNY.Rdata")
 ```
 
@@ -453,7 +452,11 @@ En la librería *tidyr* hay varios conjuntos de datos. **table1** es un conjunto
 
 ```{r}
 
+table1
+table5
 
+table5_2<-table5%>%unite(year,century,year,sep='')%>%separate(rate,into=c("cases","population"),sep="/")
+table5_2
 ```
 
 ## DPLYR
