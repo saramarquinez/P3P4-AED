@@ -347,8 +347,14 @@ En nuestro estudio queremos aplicar una serie de criterios de exclusión sobre l
 - Nota: Revisar el uso de la función filter vista en clase y tener en cuenta los operadores de comparación: igual ==, distinto !=, mayor \>, mayor o igual \>=, menor \<, menor o igual \<=.
 
 ```{r }
+#en primer lugar unimos los dos dataframes en uno unico con la variable común tailnum y después filtramos
+
+unique(planes$manufacturer)
+
+planes.f<-planes%>%left_join(flights,by="tailnum")%>%filter(manufacturer!="MCDONELL DOUGLAS"&manufacturer!="DOUGLAS"&manufacturer!="MCDONNELL DOUGLAS AIRCRAFT CO"&manufacturer!="MCDONNELL")%>%filter(seats>=90&seats<=210)%>%mutate(manufacturer=case_when(manufacturer=="AIRBUS"~"AIRBUS COMP",manufacturer=="AIRBUS INDUSTRIE"~"AIRBUS COMP",TRUE~manufacturer))
 
 
+head(planes.f)
 
 ```
 
