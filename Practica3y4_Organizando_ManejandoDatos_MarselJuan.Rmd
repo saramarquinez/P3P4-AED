@@ -364,6 +364,10 @@ Crea un data frame denominado `flights.f` que contenga los vuelos que involucren
 
 ```{r }
 
+flights.f<-flights%>%inner_join(planes.f,by="tailnum")
+
+head(flights.f)
+
 
 ```
 
