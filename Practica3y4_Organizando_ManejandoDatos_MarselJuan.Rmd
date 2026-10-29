@@ -376,7 +376,8 @@ head(flights.f)
 Reasigna los nombres de los data frames `planes.f` y `flights.f` a los nombres originales `planes` y `flights`.
 
 ```{r }
-
+planes<-planes.f
+flights<-flights.f
 ```
 
 ### Ejercicio 9
