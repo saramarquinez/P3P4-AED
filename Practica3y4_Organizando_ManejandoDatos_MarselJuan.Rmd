@@ -256,6 +256,10 @@ Para pasar a formato *tidy* necesitamos realizar dos operaciones en este caso. E
 Convierte el conjunto de datos TB en *tidy* utilizando `gather` y `separate`.
 
 ```{r}
+ejer3<-raw%>%gather(key="sexo_edad",value="casos",3:18)%>%separate(col=sexo_edad,into=c("sexo","edad"),sep=1)
+head(ejer3)
+
+
 
 ```
 
