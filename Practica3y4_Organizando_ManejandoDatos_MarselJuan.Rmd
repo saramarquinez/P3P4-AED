@@ -281,7 +281,7 @@ Para obtener la versión *tidy* primero juntamos todos los días en una variable
 Obtén la versión *tidy* del conjunto de datos `weather` utilizando las funciones `pivot_longer` y `pivot_wider`. Además cambiaremos las columnas `year`, `month` y `dia` por una única variable `fecha`. Para que la operación `pivot_wider` no de error tendremos que eliminar los NA's cuando usemos `pivot_longer`.
 
 ```{r}
-ejer4<-raw%>%pivot_longer(cols=d1:d31,names_to="dias",values_to="tiempo")%>%drop_na(tiempo)%>%pivot_wider(names_from="element",values_from="tiempo")
+ejer4<-raw%>%pivot_longer(cols=d1:d31,names_to="dias",values_to="tiempo")%>%drop_na(tiempo)%>%pivot_wider(names_from="element",values_from="tiempo")%>%unite(col="fecha",year,month,dias,sep="-")
 head(ejer4)
 
 
@@ -329,7 +329,15 @@ load("./data/VuelosNY.Rdata")
 Muestra las primeras muestras de ambos data frames para hacerte una idea de las variables que contienen. ¿Qué diferencia existe entre la información mostrada en ambos data frames?
 
 ```{r }
+head(flights)
+head(planes)
 
+colnames(flights)
+colnames(planes)
+
+# El data frame flights muestra información sobre vuelos, por ejemplo: la hora de salida, la hora real de la salida, el tiempo de retraso, el origen y destino...
+# Mientras que el de planes muestra información técnica de los aviones.
+# Aunque ambos tienen una variablel común: tailnum
 ```
 
 ### Ejercicio 6
